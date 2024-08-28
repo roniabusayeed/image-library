@@ -28,7 +28,7 @@ stb_dep = declare_dependency(
 )
 
 # PNG library dependency.
-png_dep = dependency('libpng', static: true)
+png_dep = dependency('libpng')
 
 # Package all dependencies together.
 dependencies = [
