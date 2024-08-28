@@ -16,7 +16,8 @@ include_directories = include_directories(
 # Project sources.
 sources = files(
     'src/image-decoder.cpp',
-    'src/image-encoder.cpp'
+    'src/image-encoder.cpp',
+    'src/image-encoder-png.c'
 )
 
 # STB dependency.
