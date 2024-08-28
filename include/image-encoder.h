@@ -4,10 +4,12 @@
 #include <cstdint>
 
 class ImageEncoder {
+public:
     enum class Type: int32_t {
         PNG = 0
     };
-
+    
+private:
     Type m_type;
 
 public:
