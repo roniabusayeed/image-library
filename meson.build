@@ -48,5 +48,8 @@ image_lib = library(
 # Exposing as a single dependency in order to use this project as a subproject.
 image_dep = declare_dependency(
     include_directories: include_directories,
-    link_with: image_lib
+    link_with: image_lib,
+    dependencies: [
+        png_dep
+    ]
 )
