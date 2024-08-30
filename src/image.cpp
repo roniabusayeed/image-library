@@ -98,6 +98,13 @@ const uint8_t* Image::getBuffer() const {
 }
 
 /**
+ * @brief Retrives the buffer size in bytes.
+ */
+size_t Image::getBufferSize() const {
+    return static_cast<size_t>(m_width) * m_height * m_channels;
+}
+
+/**
  * @brief Retrieves the width of the image.
  */
 int32_t Image::getWidth() const {
