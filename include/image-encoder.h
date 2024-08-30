@@ -3,6 +3,8 @@
 #include <string>
 #include <cstdint>
 
+#include "image.h"
+
 class ImageEncoder {
 public:
     enum class Type: int32_t {
@@ -20,4 +22,5 @@ public:
 
     explicit ImageEncoder(const Type& encoder_type = Type::PNG);
     void encodeImage(const uint8_t* rgb_buffer, int32_t width, int32_t height, const std::string& filepath) const;
+    void encodeImage(const Image& image, const std::string& filepath) const;
 };

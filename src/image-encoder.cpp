@@ -17,3 +17,7 @@ void ImageEncoder::encodeImage(const uint8_t* rgb_buffer, int32_t width, int32_t
         }
     }
 }
+
+void ImageEncoder::encodeImage(const Image& image, const std::string& filepath) const {
+    encodeImage(image.getBuffer(), image.getWidth(), image.getHeight(), filepath);
+}
