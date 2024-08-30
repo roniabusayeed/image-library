@@ -5,6 +5,7 @@
 
 class ImageDecoder {
 public:
+    ImageDecoder() = default;
 
     // Objects of ImageDecoder class should not be copyable.
     ImageDecoder(const ImageDecoder& other) = delete;
