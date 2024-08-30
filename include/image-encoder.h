@@ -20,7 +20,7 @@ public:
     ImageEncoder(const ImageEncoder& other) = delete;
     ImageEncoder& operator=(const ImageEncoder& other) = delete;
 
-    explicit ImageEncoder(const Type& encoder_type = Type::PNG);
-    void encodeImage(const uint8_t* rgb_buffer, int32_t width, int32_t height, const std::string& filepath) const;
+    explicit ImageEncoder(Type encoder_type = Type::PNG);
+    void encodeImage(const uint8_t* rgb_buffer, int32_t width, int32_t height, int32_t number_of_channels, const std::string& filepath) const;
     void encodeImage(const Image& image, const std::string& filepath) const;
 };

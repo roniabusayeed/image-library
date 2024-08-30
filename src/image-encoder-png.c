@@ -3,8 +3,30 @@
 #include <stdio.h>
 #include <png.h>
 
+bool encodeImageToPNG(const uint8_t* buffer, int width, int height, int number_of_channels, const char* filename) {
+    
+    // Determine PNG color type macro.
+    int png_color_type;
+    switch (number_of_channels) {
+    case 1:
+        png_color_type = PNG_COLOR_TYPE_GRAY;
+        break;
+    case 2:
+        png_color_type = PNG_COLOR_TYPE_GRAY_ALPHA;
+        break;
+    case 3:
+        png_color_type = PNG_COLOR_TYPE_RGB;
+        break;
+    case 4:
+        png_color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+        break;
+    default:
 
-bool encodeRGBtoPNG(const uint8_t* rgbBuffer, int width, int height, const char* filename) {
+        // Invalid number of color channels.
+        return false;
+    }
+
+    // Open the file for writing in binary mode.
     FILE* fp = fopen(filename, "wb");
     if (!fp) {
         return false;
@@ -37,19 +59,20 @@ bool encodeRGBtoPNG(const uint8_t* rgbBuffer, int width, int height, const char*
 
     // Set the PNG header information.
     png_set_IHDR(
-            png, info, width, height,
-            8,                                  // bit depth.
-            PNG_COLOR_TYPE_RGB,                 // color type.
-            PNG_INTERLACE_NONE,                 // interlace method.
-            PNG_COMPRESSION_TYPE_DEFAULT,       // compression method.
-            PNG_FILTER_TYPE_DEFAULT             // filter method.
+        png, info, width, height,
+        8,                                  // Bit depth.
+        png_color_type,                     // Color type.
+        PNG_INTERLACE_NONE,                 // Interlace method.
+        PNG_COMPRESSION_TYPE_DEFAULT,       // Compression method.
+        PNG_FILTER_TYPE_DEFAULT             // Filter method.
     );
 
+    // Write the header information to the file.
     png_write_info(png, info);
 
     // Write the image data.
     for (int y = 0; y < height; y++) {
-        png_bytep row_pointer = (png_bytep)(rgbBuffer + y * width * 3);
+        png_bytep row_pointer = (png_bytep)(buffer + y * width * number_of_channels);
         png_write_row(png, row_pointer);
     }
 
