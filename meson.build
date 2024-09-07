@@ -18,7 +18,8 @@ sources = files(
     'src/image-decoder.cpp',
     'src/image.cpp',
     'src/image-encoder.cpp',
-    'src/image-encoder-png.c'
+    'src/image-encoder-png.c',
+    'src/image-encoder-jpeg.c'
 )
 
 # STB dependency.
@@ -32,10 +33,14 @@ stb_dep = declare_dependency(
 # PNG library dependency.
 png_dep = dependency('libpng')
 
+# JPEG library dependency.
+jpeg_dep = dependency('libjpeg')
+
 # Package all dependencies together.
 dependencies = [
     stb_dep,
-    png_dep
+    png_dep,
+    jpeg_dep
 ]
 
 # Build the library.
@@ -51,6 +56,7 @@ image_dep = declare_dependency(
     include_directories: include_directories,
     link_with: image_lib,
     dependencies: [
-        png_dep
+        png_dep,
+        jpeg_dep
     ]
 )

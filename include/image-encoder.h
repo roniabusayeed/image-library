@@ -22,7 +22,8 @@ public:
      * Currently, only PNG format is supported.
      */
     enum class Type: int32_t {
-        PNG = 0
+        PNG     = 0,
+        JPEG    = 1
     };
     
 private:
