@@ -1,6 +1,7 @@
-#include <jpeglib.h>
-#include <stdio.h>
+#include "image-encoder-jpeg.h"
 
+#include <stdio.h>
+#include <jpeglib.h>
 
 bool encodeImageToJPEG(const uint8_t* buffer, int width, int height, int number_of_channels, const char* filename) {
     
